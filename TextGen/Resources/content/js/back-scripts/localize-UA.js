@@ -1,0 +1,27 @@
+$('#loc-file-drop').text('Файл');
+$('#loc-prefs-drop').text('Налаштування');
+$('#loc-about').text('Про програму');
+$('#loc-open').text('Відкрити файл');
+$('#loc-txt-s').text('Зберегти');
+$('#loc-txt-ss').text('Зберегти як');
+$('#loc-html-s').text('Зберегти');
+$('#loc-html-ss').text('Зберегти як');
+$('#loc-exit').text('Вихід');
+$('#loc-prefs').text('Вигляд');
+$('#loc-sett').text('Налаштування');
+$('#loc-gend').text('Згенероване');
+$('#loc-txt-from').text('Текст з файлу');
+$('#loc-gen').text('Генерувати');
+
+$('#loc-prefs-label').text('Налаштування UI');
+$('#loc-about-label').text('Про програму');
+$('#loc-saveas-label').text('Зберегти як');
+$('#loc-saveas-close').text('Закрити');
+$('#loc-about-close').text('Закрити');
+$('#loc-prefs-close').text('Закрити');
+$('#loc-def-txt').text('Тут з`явиться згенерований файл');
+$('#loc-prefs-font-size').text('Розмір шрифту тексту:');
+$('#loc-lang').text('Мова(потрібен перезапуск):');
+$('#loc-path').text('Шлях:');
+$('#loc-stop').text('Стоп');
+$('#local').val('1');

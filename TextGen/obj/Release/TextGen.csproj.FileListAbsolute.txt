@@ -1,0 +1,10 @@
+d:\MaxRev\documents\visual studio 2017\Projects\TextGen\TextGen\bin\Release\TextGen.exe.config
+d:\MaxRev\documents\visual studio 2017\Projects\TextGen\TextGen\bin\Release\TextGen.exe
+d:\MaxRev\documents\visual studio 2017\Projects\TextGen\TextGen\bin\Release\TextGen.pdb
+d:\MaxRev\documents\visual studio 2017\Projects\TextGen\TextGen\obj\Release\TextGen.browser.resources
+d:\MaxRev\documents\visual studio 2017\Projects\TextGen\TextGen\obj\Release\TextGen.Form1.resources
+d:\MaxRev\documents\visual studio 2017\Projects\TextGen\TextGen\obj\Release\TextGen.Form2.resources
+d:\MaxRev\documents\visual studio 2017\Projects\TextGen\TextGen\obj\Release\TextGen.Properties.Resources.resources
+d:\MaxRev\documents\visual studio 2017\Projects\TextGen\TextGen\obj\Release\TextGen.csproj.GenerateResource.Cache
+d:\MaxRev\documents\visual studio 2017\Projects\TextGen\TextGen\obj\Release\TextGen.exe
+d:\MaxRev\documents\visual studio 2017\Projects\TextGen\TextGen\obj\Release\TextGen.pdb
