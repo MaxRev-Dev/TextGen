@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" src="./content/favicon.ico" type="image/x-icon" />
+
+    <link href="./content/css/shepherd-theme-arrows.css" rel="stylesheet">
+    <link rel="stylesheet" href="./content/css/style.css">
+    <link rel="stylesheet" href="./content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./content/css/tether.min.css">
+    <link rel="stylesheet" href="./content/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="./content/css/jquery-ui.min.css">
+
+    <title>TextGen</title>
+</head>
+
+<body>
+    <div>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+
+        </div>
+        <nav class="fixed-top mt-3 d-flex justify-content-center ">
+            <div class="w-75">
+                <h1 class="navbar-brand m-0 float-right">
+                    TextGen</h1>
+                <div class="nav  float-left">
+                    <div id="dpw">
+                        <button class="nav-link btn maxrev-btn btn-secondary dropdown-toggle" type="button" id="loc-file-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    File
+  </button>
+                        <div class="dropdown-menu" id="dp1" aria-labelledby="drop">
+                            <a class="dropdown-item" id="loc-open" onclick="CefObj.open();" href="javascript:void(0);">Open</a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header">Text Save</h6>
+                            <a class="dropdown-item" id="loc-txt-s" onclick="CefObj.savetxt();" href="javascript:void(0);">Save</a>
+                            <a class="dropdown-item" id="loc-txt-ss" onclick="CefObj.saveastxt();" href="javascript:void(0);">Save As</a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header">HTML Save</h6>
+                            <a class="dropdown-item" id="loc-html-s" onclick="CefObj.savehtml();" href="javascript:void(0);">Save</a>
+                            <a class="dropdown-item" id="loc-html-ss" onclick="CefObj.saveashtml();" href="javascript:void(0);">Save As</a>
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item" id="loc-exit" onclick="CefObj.exit();" href="javascript:void(0);">Exit</a>
+
+                        </div>
+
+                    </div>
+                    <div>
+                        <button class="nav-link btn maxrev-btn btn-secondary dropdown-toggle" type="button" id="loc-prefs-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Preferences</button>
+                        <div class="dropdown-menu" id="dp2" aria-labelledby="drop2">
+                            <button id="loc-prefs" type="button" class="dropdown-item" data-toggle="modal" data-target="#m1">Preferences</button>
+                            <a id="loc-sett" class="dropdown-item" onclick="CefObj.preferences();">Settings</a>
+                        </div>
+
+                    </div>
+
+
+                    <a id="loc-about" class="nav-link btn maxrev-btn btn-secondary" href="javascript:void(0);" data-toggle="modal" data-target="#m3">About</a>
+                </div>
+
+            </div>
+
+        </nav>
+
+    </div>
+    <div class="main-wrap clearfix">
+        <div class="cust-btn">
+            <div class="float-left" tabindex="10" id="tab1-btn">
+
+                <div class="btn-text float-left">
+                    <p id="loc-gend">Generated</p>
+                </div>
+                <div class="wrapper">
+                    <div class="btn maxrev-btn btn-secondary">
+                        <span class="fa fa-chevron-right" aria-hidden="true"></span>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="float-right active" tabindex="11" id="tab2-btn">
+                <div class="wrapper">
+                    <div class="btn maxrev-btn btn-secondary float-right">
+                        <span class="fa fa-chevron-right" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="btn-text float-right">
+                    <p id="loc-txt-from">Text From File</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="container framer-main">
+            <div class="row">
+                <div id="wrapper" class=" col-lg-12 col-md-12 col-sm-12">
+                    <div class="form-group one">
+                        <div name="framer" id="output">
+                            <h2 id="loc-def-txt" class="def-txt">Place for generated file</h2>
+                        </div>
+                    </div>
+                    <div class="form-group two">
+                        <label for="textbox" aria-hidden="true"></label>
+                        <textarea id="slave" class="form-control main-text" name="secondary" rows="3"></textarea>
+                    </div>
+                </div>
+                <nav class=" fixed-bottom ">
+                    <div id="pbwr" class="w-100 justify-content-center">
+                        <div id="progressbar" class="nodisp">
+                            <div class="progress-label"></div>
+                        </div>
+                    </div>
+                    <div class="container df">
+                        <row>
+                            <div class="col-xm-12 col-md-12 col-lg-12">
+                                <button id="loc-gen" class="btn maxrev-btn btn-secondary" onclick="CefObj.generate();">Generate</button>
+                                <button id="loc-stop" class="btn maxrev-btn btn-secondary" onclick="CefObj.stop();">Stop Generator</button>
+<!--                                                           <button class="btn maxrev-btn btn-secondary" onclick="CefObj.dev();">DEV</button>-->
+                            </div>
+                        </row>
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+        <div id="info">Saved</div>
+
+        <div class="modal fade" id="m1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loc-prefs-label">UI Preferences</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="align-self-center col-sm-4 col-md-4 col-lg-4">
+                                <p id="loc-prefs-font-size" class="mb-auto">Font Size Of Input:</p>
+                            </div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <div id="slider-text" class=" ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="align-self-center col-sm-4 col-md-4 col-lg-4">
+                                <p class="mb-auto" id="loc-lang">Language:</p>
+                            </div>
+                            <div class="w-100 justify-content-center d-flex col-sm-8 col-md-8 col-lg-8 mx-auto">
+                                <select class="custom-select w-75 " id="local">                                        
+                                            <option value="0">English(Default)</option>
+                                            <option value="1">Ukrainian</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="loc-prefs-close" type="button" class="btn maxrev-btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="m2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loc-saveas-label">Save As</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <p id="loc-path">Path:</p>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="default-path"></span>
+                                <input type="text" class="form-control" id="save-as-path">
+                                <span class="input-group-addon" id="default-ext"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="loc-saveas-close" class="btn maxrev-btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="m3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loc-about-label">About</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+
+                            <p> Програма генерує HTML-файл з питань у текстовому документі. При редагуванні конфігурації або темплейту будьте уважні. А для редагування дизайну темплейту потрібні базові знання HTML & CSS & Bootstrap 4. </p>
+                            <h4>ОСОБЛИВОСТІ </h4>
+                            <p> У випадку "вильотів" чи зависань може бути не правильно налаштований конфіг чи темплейт.</p>
+                            <h4>КОНЦЕПТ</h4>
+                            <p> Назви файлів можна змінити в конфігурації та й не забуваємо про темплейт. Це два слеші (//) - для заголовка. Фігурні дужки ( { } ) - для блоку питань. Тильда (~) - для звичайних відповідей. Та відсоток (%) - для правильних (виділених).</p>
+                            <p> Також у вже існуючу папку згенерувати файли не вийде. Це для того, щоб не було дублікатів та сміття. Та й кирилицею користуватись не рекомендую, просто файли не знайдуться)</p>
+                            <h5> Будь-які питання, пишіть <a href="javascript:void(0);">http://vk.com/maxrev_official</a></h5>
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="loc-about-close" class="btn maxrev-btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="content/js/jquery-3.2.1.min.js"></script>
+    <script src="content/js/tether.min.js"></script>
+    <script src="content/js/shepherd.min.js"></script>
+    <script src="content/js/bootstrap.min.js"></script>
+    <script src="content/js/jquery-ui.min.js"></script>
+    <script src="content/js/ResizeSensor.js"></script>
+    <script>
+        $(function() {
+            $("#slider-text").slider({
+                value: 16,
+                max: 20,
+                min: 10,
+                change: function() {
+                    sizeText();
+                },
+                animate: "slow",
+                orientation: "horizontal"
+            });
+
+        });
+
+    </script>
+    <script>
+        function showtab2() {
+            if ($("#tab2-btn").hasClass("active") == false) {
+                $(".one").css("animation", "os 2s");
+                $("#tab1-btn").removeClass("active");
+                $("#tab2-btn").addClass("active");
+                setTimeout(
+                    function() {
+                        $(".two").css("animation", "es 2s");
+                        $(".two").css("display", "block");
+                        $(".one").css("display", "none");
+                    }, 2000);
+            }
+        };
+
+        function showtab1() {
+            overflowOne();
+            if ($("#tab1-btn").hasClass("active") == false) {
+                $(".two").css("animation", "os 2s");
+                $("#tab2-btn").removeClass("active");
+                $("#tab1-btn").addClass("active");
+                setTimeout(
+                    function() {
+                        $(".one").css("animation", "es 2s");
+                        $(".one").css("display", "block");
+                        $(".two").css("display", "none");
+                    }, 2000);
+
+            }
+
+        }
+
+    </script>
+    <script>
+        function sizeText() {
+            var x = $("#slider-text").slider("option", "value");
+
+            $("#slave").css("font-size", x + "px");
+            $("#prime").css("font-size", x + "px");
+        };
+
+    </script>
+    <script>
+        $("#tab1-btn").click(function() {
+            showtab1();
+        });
+        $("#tab2-btn").click(function() {
+            showtab2();
+        });
+
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(".two").css("animation", "es 2s");
+            $(".two").css("display", "block");
+            $(".one").css("animation", "os 2s")
+            $(".one").css("display", "none");
+        });
+        $(document).ready(function() {
+            overflowOne();
+            setTimeout(function() {
+                $('body').addClass('loaded');
+                $('h1').css('color', '222222');
+            }, 000);
+        });
+
+    </script>
+    <script>
+        function setFrame(inp) {
+            $("#output").html(inp);
+        }
+
+        new ResizeSensor(jQuery('#slave'), function() {
+            var c = $("#slave").height();
+            $(".df").css("margin-top", c + "px");
+        });
+
+
+
+        $('.pbclick').click(function() {
+            return (this.tog = !this.tog) ? $('#pbwr').fadeOut('slow') : $('#pbwr').fadeIn('slow');
+        });
+
+    </script>
+    <script>
+        function overflowOne() {
+            $(".one").css("overflow", function() {
+                if ($("#def-txt").length > 0) {
+                    return "hidden";
+                } else {
+                    return "auto";
+                }
+            });
+        }
+        var progressbar = $("#progressbar"),
+            progressLabel = $(".progress-label"),
+            progressbarval = $('.ui-progressbar-value');
+
+        progressbar.on('progressbarchange', function() {
+            var width = $('.ui-progressbar-value')[0].style.width;
+            progressLabel.text(width);
+        });
+
+    </script>
+</body>
+
+</html>
